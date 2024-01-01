@@ -18,17 +18,21 @@ public class StudentLookupService : IStudentLookupService
                 {
                     StudentId = "232323",
                     FirstName = "John",
+                    MiddleName = "JoM",
                     LastName = "Doe",
                     BirthDate = new DateOnly(2000, 1, 3),
-                    Gender = "M"
+                    Gender = Gender.Male.ToString(),
+                    Grade = "10"
                 },
                 new StudentLookupResult
                 {
                     StudentId = "234933",
                     FirstName = "Jane",
+                    MiddleName = "JaM",
                     LastName = "Doe",
                     BirthDate = new DateOnly(2003, 4, 5),
-                    Gender = "F"
+                    Gender = Gender.Female.ToString(),
+                    Grade = "05"
                 }
             };
 
