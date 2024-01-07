@@ -3,14 +3,15 @@ using System.ComponentModel.DataAnnotations;
 using OregonNexus.Broker.Connector.Configuration;
 using OregonNexus.Broker.Domain;
 using OregonNexus.Broker.Connector.StudentLookup;
+using OregonNexus.Broker.Connector.Student;
 
 namespace OregonNexus.Broker.Connector.Fixture.Services;
 
 public class StudentLookupService : IStudentLookupService
 {
-   public Task<List<StudentLookupResult>> SearchAsync(Student studentParameters)
-   {
-        return Task.Run(() => {
+    public Task<List<StudentLookupResult>> SearchAsync(Domain.Student studentParameters)
+    {
+         return Task.Run(() => {
         
             var students = new List<StudentLookupResult>
             {
@@ -22,7 +23,13 @@ public class StudentLookupService : IStudentLookupService
                     LastName = "Doe",
                     BirthDate = new DateOnly(2000, 1, 3),
                     Gender = Gender.Male.ToString(),
-                    Grade = "10"
+                    Grade = "10",
+                    Additional = new Dictionary<string, object> { 
+                        [typeof(Models.Student).FullName!] = new Models.Student()
+                            {
+                                FixtureStudentNumber = "232323"
+                            }
+                        }
                 },
                 new StudentLookupResult
                 {
@@ -32,7 +39,13 @@ public class StudentLookupService : IStudentLookupService
                     LastName = "Doe",
                     BirthDate = new DateOnly(2003, 4, 5),
                     Gender = Gender.Female.ToString(),
-                    Grade = "05"
+                    Grade = "05",
+                    Additional = new Dictionary<string, object> { 
+                        [typeof(Models.Student).FullName!] = new Models.Student()
+                        {
+                            FixtureStudentNumber = "234933"
+                        }
+                    }
                 }
             };
 
@@ -46,5 +59,5 @@ public class StudentLookupService : IStudentLookupService
             return filteredStudents;
         
         });
-   }
+    }
 }
